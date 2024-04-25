@@ -282,7 +282,7 @@ public:
             c++;
         }
 
-        // Swap the nodes in the list
+        
         if (n1 != NULL && n2 != NULL) {
             // Swap the next pointers of the nodes
             if (n1->next == n2) {
@@ -302,7 +302,6 @@ public:
                     tempNext->prev = n1;
                 }
 
-                // Update head and tail pointers if necessary
                 if (head == n1) {
                     head = n2;
                 }
@@ -310,7 +309,7 @@ public:
                     tail = n1;
                 }
             } else {
-                // Nodes are not adjacent
+                
                 Node<t>* tempPrev1 = n1->prev;
                 Node<t>* tempNext1 = n1->next;
                 Node<t>* tempPrev2 = n2->prev;
@@ -328,14 +327,12 @@ public:
                 if (tempNext2 != NULL) {
                     tempNext2->prev = n1;
                 }
-
-                // Swap the prev and next pointers of the nodes
+                
                 n1->prev = tempPrev2;
                 n1->next = tempNext2;
                 n2->prev = tempPrev1;
                 n2->next = tempNext1;
 
-                // Update head and tail pointers if necessary
                 if (head == n1) {
                     head = n2;
                 } else if (head == n2) {
