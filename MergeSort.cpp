@@ -5,6 +5,7 @@ using namespace std;
 bool flag=true;
 int counter=0;
 
+
 class Student{
 
 public:
@@ -68,12 +69,10 @@ void Merge(t a[], int l, int m, int r) {
     }
 
     while (i < n1) {
-        counter++;
         a[k++] = L[i++];
     }
 
     while (j < n2) {
-        counter++;
         a[k++] = R[j++];
     }
 
@@ -133,7 +132,7 @@ int main() {
 
     ofstream mfile("SortedByName.txt");
     mfile<<"Algorithm: Merge Sort\n";
-    mfile<<"Number of comparisons: 5 based on this fun.  T(n)=2t(n/2)+(n-1)\n";
+    mfile<<"Number of comparisons: "<<counter<<"\n";
     mfile<<"Running Time:  "<<elapsed_millseconds.count() <<"  milliseconds\n\n";
 
     for (int i = 0; i < numStudents; ++i) {
@@ -144,13 +143,14 @@ int main() {
 
 
     flag= false;
+    counter=0;
     auto startt = chrono::high_resolution_clock::now();
     MergeSort(students,0,numStudents-1);
     auto endd = chrono::high_resolution_clock::now();
     chrono::duration<double,milli> duration_millseconds = end - start;
     ofstream mmfile("SortedByGpa.txt");
     mmfile<<"Algorithm: Merge Sort\n";
-    mmfile<<"Number of comparisons: 5 based on this fun.  T(n)=2t(n/2)+(n-1)\n";
+    mmfile<<"Number of comparisons: "<<counter<<"\n";
     mmfile<<"Running Time:  "<<duration_millseconds.count()<<" milliseconds \n \n";
 
     for (int i = 0; i < numStudents; ++i) {
