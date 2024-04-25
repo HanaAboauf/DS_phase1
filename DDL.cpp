@@ -284,9 +284,8 @@ public:
 
         
         if (n1 != NULL && n2 != NULL) {
-            // Swap the next pointers of the nodes
+           
             if (n1->next == n2) {
-                // Nodes are adjacent
                 Node<t>* tempNext = n2->next;
                 Node<t>* tempPrev = n1->prev;
 
