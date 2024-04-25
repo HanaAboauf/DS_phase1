@@ -3,6 +3,7 @@
 using namespace std;
 
 bool flag=true;
+int counter=0;
 
 class Student{
 
@@ -58,6 +59,7 @@ void Merge(t a[], int l, int m, int r) {
     k = l;
 
     while (i < n1 && j < n2) {
+        counter++;
         if (L[i] < R[j]) {
             a[k++] = L[i++];
         } else {
@@ -66,10 +68,12 @@ void Merge(t a[], int l, int m, int r) {
     }
 
     while (i < n1) {
+        counter++;
         a[k++] = L[i++];
     }
 
     while (j < n2) {
+        counter++;
         a[k++] = R[j++];
     }
 
@@ -93,7 +97,7 @@ void MergeSort(T a[], int l, int r) {
 
 int main() {
 
-    auto start = chrono::high_resolution_clock::now();
+
 
     ifstream file("Student.txt");
     if (!file.is_open()) {
@@ -122,15 +126,15 @@ int main() {
 
     file.close();
     flag=true;
+    auto start = chrono::high_resolution_clock::now();
     MergeSort(students,0,numStudents-1);
-
     auto end = chrono::high_resolution_clock::now();
-    std::chrono::duration<double> elapsed_seconds = end - start;
+    chrono::duration<double,milli> elapsed_millseconds = end - start;
 
     ofstream mfile("SortedByName.txt");
     mfile<<"Algorithm: Merge Sort\n";
     mfile<<"Number of comparisons: 5 based on this fun.  T(n)=2t(n/2)+(n-1)\n";
-    mfile<<"Running Time:  "<<elapsed_seconds.count() <<"  milliseconds \n\n";
+    mfile<<"Running Time:  "<<elapsed_millseconds.count() <<"  milliseconds\n\n";
 
     for (int i = 0; i < numStudents; ++i) {
         mfile<< "Name: " << students[i].getName() << endl;
@@ -140,22 +144,20 @@ int main() {
 
 
     flag= false;
+    auto startt = chrono::high_resolution_clock::now();
     MergeSort(students,0,numStudents-1);
+    auto endd = chrono::high_resolution_clock::now();
+    chrono::duration<double,milli> duration_millseconds = end - start;
     ofstream mmfile("SortedByGpa.txt");
     mmfile<<"Algorithm: Merge Sort\n";
     mmfile<<"Number of comparisons: 5 based on this fun.  T(n)=2t(n/2)+(n-1)\n";
-    mmfile<<"Running Time: 8 milliseconds  based on this relation. O(nlog(n))\n \n";
+    mmfile<<"Running Time:  "<<duration_millseconds.count()<<" milliseconds \n \n";
 
     for (int i = 0; i < numStudents; ++i) {
         mmfile<< "Name: " << students[i].getName() << endl;
         mmfile << "ID: " << students[i].getId() << endl;
         mmfile << "GPA: " << students[i].getGpa() << endl;
     }
-
-
-
-
-
 
     return 0;
 }
